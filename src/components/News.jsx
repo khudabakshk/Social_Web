@@ -14,7 +14,7 @@ fetch(`https://saurav.tech/NewsAPI/top-headlines/category/business/us.json`).the
 
 <div className="pb-5">
     {Article.slice(0,articlenum).map((news,index)=>(
-     <div className="flex gap-4 m-2 mb-4 bg-white shadow rounded-xl">
+     <div key={index} className="flex gap-4 m-2 mb-4 bg-white shadow rounded-xl">
         <a href={news.url} target='blank'>
             <img src={news.urlToImage} alt="" className='rounded-xl' />
             <div className="p-2">
