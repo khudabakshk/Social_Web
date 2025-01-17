@@ -1,5 +1,5 @@
 import User from "../models/user.model"
-import {connect} from "../mongoose/connectDB"
+import {connectDB} from "../mongoose/connectDB"
 
 export const createOrUpdateUSer = async(
     id,
@@ -10,7 +10,7 @@ export const createOrUpdateUSer = async(
     username
 )=>{
     try {
-        await connect();
+        await connectDB();
         const user = User.findOneAndUpdate(
             {clerkID:id},{
                 $set:{
