@@ -1,93 +1,78 @@
-import { Webhook } from 'svix';
-import { headers } from 'next/headers';
-import { clerkClient } from '@clerk/nextjs/server';
-import { createOrUpdateUSer } from '../../../lib/action/user';
+import { Webhook } from "svix";
+import { headers } from "next/headers";
+import { createOrUpdateUSer } from "@/lib/action/user";
 
-export async function POST(req) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET_KEY;
+export async function POST (req) {
+    // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
+    const WEB_HOOK_KEY = process.env.WEBHOOK_SECRET_KEY
+    if(!WEB_HOOK_KEY){
+        throw new Error (`Please add WEBHOOK_KEY from Clerk Dashboard to .env or .env.local`)
+    }
 
-  if (!WEBHOOK_SECRET) {
-    throw new Error(
-      'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local'
-    );
-  }
+   // Get the headers
 
-  // Get the headers
-  const headerPayload = headers();
-  const svix_id = headerPayload.get('svix-id');
-  const svix_timestamp = headerPayload.get('svix-timestamp');
-  const svix_signature = headerPayload.get('svix-signature');
+    const headerpayload = headers()
+    const svix_id   =  headerpayload.get("svix_id")
+    const svix_timestmap   =  headerpayload.get("svix_timestmap")
+    const svix_signature   =  headerpayload.get("svix_signature")
 
-  // If there are no headers, error out
-  if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response('Error occured -- no svix headers', {
-      status: 400,
-    });
-  }
+       // If there are no headers, error out
 
-  // Get the body
-  const payload = await req.json();
-  const body = JSON.stringify(payload);
+    if (!svix_id || !svix_timestmap || !svix_signature){
+        throw Error ("Invalid in svix_id , svix_timestmap ,svix_signature")
+        
+    }
 
-  // Create a new Svix instance with your secret.
-  const wh = new Webhook(WEBHOOK_SECRET);
+   // Get the body
+    
+    const payload = await req.json()
+    const body = JSON.stringify(payload)
 
+  
+
+ // Create a new Svix instance with your secret
+
+  const wh  = new Webhook (WEB_HOOK_KEY)
   let evt;
 
   // Verify the payload with the headers
   try {
-    evt = wh.verify(body, {
-      'svix-id': svix_id,
-      'svix-timestamp': svix_timestamp,
-      'svix-signature': svix_signature,
-    });
-  } catch (err) {
-    console.error('Error verifying webhook:', err);
-    return new Response('Error occured', {
-      status: 400,
-    });
+    evt = wh.verify(body,{
+      'svix-id':svix_id,
+      'svix-timestamp':svix_timestmap,
+      'svix-signature':svix_signature,
+    })
+  } catch (error) {
+    console.error(`Error verifying webhook:`,error)
+      return new Response(`Error occured`,{
+        status:400,
+      })  
+  }
+  const {id} = evt?.data
+  const eventype = evt?.data
+  if(eventype === 'user create' || eventype === 'user update'){
+    const {
+      id,
+      first_name,
+      last_name,
+      image_url,
+      email_addresses,
+      username
+    } = evt.data
   }
 
-  // Do something with the payload
-  // For this guide, you simply log the payload to the console
-  const { id } = evt?.data;
-  const eventType = evt?.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log('Webhook body:', body);
-
-  if (eventType === 'user.created' || eventType === 'user.updated') {
-    const { id, first_name, last_name, image_url, email_addresses, username } =
-      evt?.data;
-    try {
-      const user = await createOrUpdateUSer(
-        id,
-        first_name,
-        last_name,
-        image_url,
-        email_addresses,
-        username
-      );
-      if (user && eventType === 'user.created') {
-        try {
-          await clerkClient.users.updateUserMetadata(id, {
-            publicMetadata: {
-              userMongoId: user._id,
-            },
-          });
-        } catch (error) {
-          console.log('Error updating user metadata:', error);
-        }
-      }
-    } catch (error) {
-      console.log('Error creating or updating user:', error);
-      return new Response('Error occured', {
-        status: 400,
-      });
-    }
+  try {
+    const user = await createOrUpdateUSer (id,{
+      id,
+      first_name,
+      last_name,
+      image_url,
+      email_addresses,
+      username
+    })
+  } catch (error) {
+    
   }
-
-console.log("helloe")
-
   return new Response('', { status: 200 });
+
 }
