@@ -2,7 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
+import Loder from "../../components/Loder";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          
+        <ClerkLoading>
+          <Loder/>
+        </ClerkLoading>
+          <ClerkLoaded>
+
+       
       <div className="flex justify-between p-3 "  >
           <div className="">
           <LeftSidebar/>
@@ -39,7 +45,10 @@ export default function RootLayout({ children }) {
           <RightSidebar />
           </div>
 
-        </div>        
+        </div> 
+
+        </ClerkLoaded>
+
       </body>
     </html>
   </ClerkProvider>

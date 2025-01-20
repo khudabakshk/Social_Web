@@ -2,8 +2,7 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>
-      Home
-    </div>
+    <div className='text-blue-500'>Home</div>
+
   )
 }

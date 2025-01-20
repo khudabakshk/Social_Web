@@ -3,6 +3,7 @@ import  {React, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import News from './News'
 import "../../src/app/globals.css"
+
 export default function RightSidebar() {
 
   const [input , setinput] = useState("")
