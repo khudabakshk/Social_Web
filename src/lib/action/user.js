@@ -1,7 +1,7 @@
-import User from "../models/user.model"
+import { User } from "@clerk/nextjs/dist/types/server";
 import {connectDB} from "../mongoose/connectDB"
 
-export const createOrUpdateUSer = async(
+export const CreateOrUpdateUSer = async(
     id,
     first_name,
     last_name,
