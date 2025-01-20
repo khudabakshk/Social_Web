@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+ import mongoose from "mongoose";
 let intlizlied  = false;
 export const connectDB = async ()=>{
     mongoose.set("strictQuery",true)
