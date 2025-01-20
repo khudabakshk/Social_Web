@@ -1,4 +1,4 @@
-import { User } from "@clerk/nextjs/dist/types/server";
+import User from "../models/user.model"
 import {connectDB} from "../mongoose/connectDB"
 
 export const CreateOrUpdateUSer = async(

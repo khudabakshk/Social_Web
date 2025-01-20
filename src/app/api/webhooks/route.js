@@ -1,14 +1,14 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { clerkClient } from '@clerk/nextjs/server';
-import { CreateOrUpdateUSer } from '../../../lib/action/user';
+import { CreateOrUpdateUSer } from '@/lib/action/user';
+
 
 export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET_KEY;
 
   if (!WEBHOOK_SECRET) {
-
     throw new Error(
       'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local'
     );
@@ -52,7 +52,6 @@ export async function POST(req) {
 
   // Do something with the payload
   // For this guide, you simply log the payload to the console
-  
   const { id } = evt?.data;
   const eventType = evt?.type;
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
@@ -88,4 +87,8 @@ export async function POST(req) {
       });
     }
   }
+
+
+
+  return new Response('', { status: 200 });
 }
