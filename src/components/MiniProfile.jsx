@@ -9,9 +9,9 @@ export default function MiniProfile() {
     <div className=''>
 
         <UserButton />
-        <h3>{user && user.first_name}</h3>
+        <h3>{user && user.firstName}</h3>
         <p>{user && user.username}</p>
-        <p>{user && user.email_address}</p>
+        <p>{user && user.emailAddress}</p>
         
     </div>
   )

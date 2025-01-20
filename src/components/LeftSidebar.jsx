@@ -17,7 +17,7 @@ export default function LeftSidebar() {
       className='flex items-center p-3  hover:bg-gray-100 rounded-full transition-all duration-200 gap-2 w-fit'
       >
         <TiHome   className='w-7 h-7' />
-        <span>Homee</span>
+        <span>Home</span>
 
       </Link>
       <button className='bg-blue-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-48 h-9 shadow-md hidden xl:inline '>
