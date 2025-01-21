@@ -1,27 +1,22 @@
-import mongoose from "mongoose";
-
-let initialized = false;
-
-export const connectDB = async () => {
-    mongoose.set("strictQuery", false);
-
-    if (initialized) {
-        console.log("Database is already connected");
-        return;
+ import mongoose from "mongoose";
+let intlizlied  = false;
+export const connectDB = async ()=>{
+    mongoose.set("strictQuery",false)
+    if (intlizlied){
+        console.log("Database is already connected")
+        return
     }
-
-    if (!process.env.MONGO_URL) {
-        console.error("MONGO_URL is not defined in environment variables.");
-        return;
-    }
-
+    console.log("hi")
     try {
-        await mongoose.connect(process.env.MONGO_URL, {
-            dbName: 'Social-web',
-        });
-        console.log("Database is connected successfully");
-        initialized = true;
+        await
+        mongoose.connect(process.env.MONGO_URL,{
+            dbName:'Social-web',
+            useNewUrlParser: true,
+             useUnifiedTopology: true,
+        })
+        console.log("Database is connected successfully")
+        intlizlied = true
     } catch (error) {
-        console.error(`Error connecting to the database: ${error.message}`);
+        console.log(`Database connectDB.js ${error}`)
     }
-};
+}
