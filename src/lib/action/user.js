@@ -28,3 +28,4 @@ export const CreateOrUpdateUSer = async(
         console.log(`Error in CreateOrUpdateUser ${error}`)
     }
 }
+connectDB()
