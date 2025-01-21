@@ -1,11 +1,12 @@
  import mongoose from "mongoose";
 let intlizlied  = false;
 export const connectDB = async ()=>{
-    mongoose.set("strictQuery",true)
+    mongoose.set("strictQuery",false)
     if (intlizlied){
         console.log("Database is already connected")
         return
     }
+    console.log("hi")
     try {
         await
         mongoose.connect(process.env.MONGO_URL,{
