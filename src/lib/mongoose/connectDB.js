@@ -12,9 +12,8 @@ export const connect = async () => {
 
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      dbName: 'Social-web',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      dbName: 'BAKHS_DEBUG',
+    
     });
     console.log('Connected to MongoDB');
     initialized = true;
