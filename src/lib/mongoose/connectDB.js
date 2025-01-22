@@ -1,7 +1,7 @@
  import mongoose from "mongoose";
 let intlizlied  = false;
 export const connectDB = async ()=>{
-    mongoose.set("strictQuery",false)
+    mongoose.set("strictQuery",true)
     if (intlizlied){
         console.log("Database is already connected")
         return
