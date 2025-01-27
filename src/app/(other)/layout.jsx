@@ -33,15 +33,15 @@ export default function RootLayout({ children }) {
           <ClerkLoaded>
 
        
-      <div className="flex justify-between p-3 "  >
-          <div className="">
+      <div className="flex justify-between max-w-6xl mx-auto "  >
+          <div className="hidden sm:inline broder-r h-screen sticky top-0">
           <LeftSidebar/>
           </div>
-          <div className="">
+          <div className="max-w-3xl flex-1">
           {children}
 
           </div>
-          <div className="bg-[#ABDBE3] w-[24rem] p-4">
+          <div className="lg:flex-col p-3 h-screen broder-1 hidden lg:flex w-[24rem]">
           <RightSidebar />
           </div>
 
