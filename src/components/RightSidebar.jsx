@@ -18,7 +18,7 @@ export default function RightSidebar() {
     <>
       <form onSubmit={sumbitHandel}>
 
-      <input  className=' text-black bg-white rounded-md mar p-2 w-64 m-auto  flex mb-5'   type="text" value={input}  onChange={(e)=>{setinput(e.target.value)}} placeholder='Search'  />
+      <input  className= 'bg-gray-100 border text-black border-gray-200 rounded-3xl text-sm w-full px-4 py-2'   type="text" value={input}  onChange={(e)=>{setinput(e.target.value)}} placeholder='Search'  />
       </form>     
       <News/> 
     </>
