@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { FaImage } from "react-icons/fa";
 import { useUser } from '@clerk/nextjs';
+import { IoMdClose } from "react-icons/io";
 
 export default function Input() {
   const { user, isSignedIn, isLoaded } = useUser();
@@ -20,12 +21,25 @@ export default function Input() {
   };
 
   return (
-    <div className="flex flex-col p-4 border rounded-lg shadow-lg bg-white w-full max-w-md space-y-4">
+    <div className="flex flex-col p-4 border rounded-lg shadow-lg bg-white w-full max-w-md space-y-4 m-auto">
       <textarea
         rows={2}
         className="w-full p-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="Write your post..."
+        placeholder="Write your post...."
       />
+
+      {
+        selectedImage && (
+          <div className="flex justify-end ">
+          <IoMdClose
+          size={20}
+          className="cursor-pointer hover:scale-110"
+            onClick={()=>{
+                setSelectedImage(null)
+              }} />
+          </div>
+        )
+      }
 
       {selectedImage && (
         <div className="relative">
@@ -56,4 +70,3 @@ export default function Input() {
     </div>
   );
 }
-
