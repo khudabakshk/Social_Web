@@ -68,8 +68,10 @@ export default function Input() {
         <CldUploadWidget uploadPreset="socialweb1">
     {({ open }) => {
     return (
-      <button onClick={() => open()}>
-        Upload an Image.
+      <button
+      className="px-4 py-2 bg-[#0D9AFF] text-white rounded-md hover:bg-[#3c8fca]"
+       onClick={() => open()}>
+        Upload an Image
       </button>
     );
   }}
