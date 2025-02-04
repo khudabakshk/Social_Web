@@ -66,10 +66,10 @@ export default function Input() {
         </div> */}
 
         <CldUploadWidget uploadPreset="socialweb1">
-   {({ open }) => {
+    {({ open }) => {
     return (
       <button onClick={() => open()}>
-        Upload an Image
+        Upload an Image.
       </button>
     );
   }}
