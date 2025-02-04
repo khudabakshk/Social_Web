@@ -48,8 +48,8 @@ export default function Input() {
         </div>
       )}
 
-      {/* <div className="flex items-center justify-between">
-        <div>
+      <div className="flex items-center justify-between">
+        {/* <div>
           <FaImage
             size={24}
             color="red"
@@ -64,9 +64,9 @@ export default function Input() {
             onChange={handleUploadImage}
           />
         </div> */}
-        
-        <CldUploadWidget uploadPreset="<Your Upload Preset>">
-  {({ open }) => {
+
+        <CldUploadWidget uploadPreset="socialweb1">
+   {({ open }) => {
     return (
       <button onClick={() => open()}>
         Upload an Image
