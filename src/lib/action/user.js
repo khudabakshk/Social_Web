@@ -1,5 +1,3 @@
-
-
 import User from '../../lib/models/user.model';
 import { connect } from '../mongoose/connectDB';
 

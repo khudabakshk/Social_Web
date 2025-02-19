@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState ,useEffect} from 'react'
 
 export default function News() {
@@ -27,7 +28,7 @@ fetch(`https://saurav.tech/NewsAPI/top-headlines/category/business/us.json`).the
     }
     
     <div className='flex mt-5 gap-x-6'>
-    <button onClick={()=>{
+    <button onClick={()=>{  
       setarticlenum(articlenum - 6 )
     }} className='p-3 bg-black text-white'>previous</button>
     
@@ -39,4 +40,3 @@ fetch(`https://saurav.tech/NewsAPI/top-headlines/category/business/us.json`).the
 </>
   )
 }
-
