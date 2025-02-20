@@ -25,7 +25,6 @@ export async function Post(req) {
         return new Response (json.stringify(newPost),
         {status:200}
     )
-      
 
     } catch (error) {
             console.log(error)
