@@ -28,7 +28,7 @@ export async function Post(req) {
 
     } catch (error) {
             console.log(error)
-            return new Response ({"Internal Server error",error:error.message}), 
+            return new Response ({error:error.message}), 
             {status:500}
     }
 }
