@@ -43,7 +43,7 @@ export async function post(req) {
     const user = await currentUser(req);
     try {
         await connect();
-        const data = await req.json();
+        const data = await req.JSON();
         console.log("Received Data:", data);
         if (!user || user.publicMetadata.userMongoId !== data.userMongoId) {
             return new Response("Unauthorized", { status: 401 });
@@ -60,10 +60,10 @@ export async function post(req) {
 
         await newPost.save();
 
-        return new Response(json.stringify(newPost), { status: 200 });
+        return new Response(JSON.stringify(newPost), { status: 200 });
     } catch (error) {
         console.error("Error creating post:", error);
-        return new Response(json.stringify({ message: "Internal Server Error", error: error.message }), { status: 500 });
+        return new Response(JSON.stringify({ message: "Internal Server Error", error: error.message }), { status: 500 });
     }s
 
 }
