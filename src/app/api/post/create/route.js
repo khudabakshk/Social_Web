@@ -76,6 +76,7 @@ import { currentUser } from "@clerk/nextjs/server";
 export async function post(req) {
     const user = await currentUser(req);
     try {
+        await connect();
         // Fixing the method to parse the JSON body of the request
         const data = await req.json(); // .json() instead of .JSON()
         console.log("Received Data:", data);
